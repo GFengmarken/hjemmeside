@@ -84,7 +84,7 @@ fetch('https://api.github.com/repos/GFengmarken/hjemmeside/contents/generelforsa
     ul.innerHTML = '';
     files.filter(f => f.name.endsWith('.pdf')).forEach(f => {
       const li = document.createElement('li');
-      li.innerHTML = `<a href="${f.download_url}">${f.name}</a>`;
+      li.innerHTML = `<a href="/generelforsamling/${f.name}">${f.name}</a>` - `<a href="${f.download_url}">Download</a>`;
       ul.appendChild(li);
     });
   });
