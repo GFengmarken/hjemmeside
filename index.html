@@ -43,7 +43,7 @@
 
   <section id="generelforsamling">
     <h2>Generelforsamling</h2>
-    
+    <ul id="dok-liste">Indlæser...</ul>
   </section>
 
   <section id="diverse">
@@ -75,3 +75,17 @@
 
 </body>
 </html>
+
+<script>
+fetch('https://api.github.com/repos/DIT-BRUGERNAVN/DIT-REPO/contents/generelforsamling')
+  .then(r => r.json())
+  .then(files => {
+    const ul = document.getElementById('dok-liste');
+    ul.innerHTML = '';
+    files.filter(f => f.name.endsWith('.pdf')).forEach(f => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${f.download_url}">${f.name}</a>`;
+      ul.appendChild(li);
+    });
+  });
+</script>
