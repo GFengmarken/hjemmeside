@@ -82,7 +82,7 @@
 </body>
 </html>
 
-<script>
+<script type="text/javascript">
 fetch('https://api.github.com/repos/GFengmarken/hjemmeside/contents/generelforsamling')
   .then(r => r.json())
   .then(files => {
@@ -94,8 +94,6 @@ fetch('https://api.github.com/repos/GFengmarken/hjemmeside/contents/generelforsa
       ul.appendChild(li);
     });
   });
-</script>
-<script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'da', includedLanguages: 'en,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
 }
