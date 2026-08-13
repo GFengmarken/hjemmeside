@@ -31,6 +31,7 @@
   <a href="#diverse">Diverse</a>
   <a href="#vedtægter">Vedtægter</a>
   <a href="#kontakt">Kontakt</a>
+  <div id="google_translate_element"></div>
 </nav>
 
 <main>
@@ -94,3 +95,9 @@ fetch('https://api.github.com/repos/GFengmarken/hjemmeside/contents/generelforsa
     });
   });
 </script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'da', includedLanguages: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
