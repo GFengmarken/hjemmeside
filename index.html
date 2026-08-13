@@ -18,6 +18,23 @@
   footer { background:#eee; text-align:center; padding:1.5rem; margin-top:3rem; font-size:0.85rem; color:#555; }
 </style>
 </head>
+ <script type="text/javascript">
+fetch('https://api.github.com/repos/GFengmarken/hjemmeside/contents/generelforsamling')
+  .then(r => r.json())
+  .then(files => {
+    const ul = document.getElementById('dok-liste');
+    ul.innerHTML = '';
+    files.filter(f => f.name.endsWith('.pdf')).forEach(f => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="/generelforsamling/${f.name}">${f.name}</a> - <a href="${f.download_url}">Download</a>`;
+      ul.appendChild(li);
+    });
+  });
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'da', includedLanguages: 'en,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <body>
 
 <header>
@@ -83,20 +100,4 @@
 </body>
 </html>
 
-<script type="text/javascript">
-fetch('https://api.github.com/repos/GFengmarken/hjemmeside/contents/generelforsamling')
-  .then(r => r.json())
-  .then(files => {
-    const ul = document.getElementById('dok-liste');
-    ul.innerHTML = '';
-    files.filter(f => f.name.endsWith('.pdf')).forEach(f => {
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="/generelforsamling/${f.name}">${f.name}</a> - <a href="${f.download_url}">Download</a>`;
-      ul.appendChild(li);
-    });
-  });
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'da', includedLanguages: 'en,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-}
-</script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
