@@ -112,11 +112,30 @@ fetch('https://api.github.com/repos/GFengmarken/hjemmeside/contents/generelforsa
   .then(files => {
     const ul = document.getElementById('dok-liste');
     ul.innerHTML = '';
-    files.filter(f => f.name.endsWith('.pdf')).forEach(f => {
+
+    const pdfs = files
+      .filter(f => f.name.endsWith('.pdf'))
+      .sort((a, b) => b.name.localeCompare(a.name)); // nyeste (højeste dato-prefix) øverst
+
+    pdfs.forEach((f, i) => {
       const li = document.createElement('li');
       li.innerHTML = `<a href="/generelforsamling/${f.name}">${f.name}</a> - <a href="${f.download_url}">Download</a>`;
+      if (i >= 5) li.style.display = 'none';
+      li.classList.add('dok-item');
       ul.appendChild(li);
     });
+
+    if (pdfs.length > 5) {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="#" id="vis-resten">Vis resten</a>`;
+      ul.appendChild(li);
+
+      document.getElementById('vis-resten').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.dok-item').forEach(item => item.style.display = 'list-item');
+        this.parentElement.style.display = 'none';
+      });
+    }
   });
 </script>
 <script type="text/javascript">
